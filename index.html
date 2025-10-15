@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite ID Card Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="form-section">
+            <header class="main-header">
+                <h1>ID CARD MAKER 🧑‍🎓</h1>
+                <p>Create professional student ID cards instantly. Free online tool for educational institutions.</p>
+            </header>
+            
+            <form id="idCardForm" autocomplete="off">
+               <div class="form-group">
+                        <label for="collegeLogo">College Logo</label>
+                        <input type="file" id="collegeLogo" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-900 dark:text-gray-100 dark:focus:ring-blue-400 dark:focus:border-blue-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-500 file:text-white hover:file:bg-blue-600"
+                onchange="validateFile(this, 800, ['jpg', 'jpeg', 'png', 'gif'])" accept=".jpg, .jpeg, .png, .gif" required>
+                    </div>
+                <div class="form-group">
+                    <label for="collegeName">College Name</label>
+                    <input type="text" id="collegeName" value="Guru Gobind Singh Indraprastha University">
+                </div>
+                <div class="form-group">
+                        <label for="studentPhoto">Student Photo</label>
+                        <input type="file" id="studentPhoto" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-900 dark:text-gray-100 dark:focus:ring-blue-400 dark:focus:border-blue-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-500 file:text-white hover:file:bg-blue-600"
+                onchange="validateFile(this, 800, ['jpg', 'jpeg', 'png', 'gif'])" accept=".jpg, .jpeg, .png, .gif" required>
+                    </div>
+                <div class="form-group">
+                    <label for="studentName">Student Name</label>
+                    <input type="text" id="studentName" value="HERE NOOB">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="idNumber">ID Number</label>
+                        <input type="text" id="idNumber" value="IPU23CSE023">
+                    </div>
+                    <div class="form-group">
+                        <label for="class">Class</label>
+                        <input type="text" id="class" value="CSE">
+                    </div>
+                </div>
+                <div class="form-row">
+                     <div class="form-group">
+                        <label for="dob">Date Of Birth</label>
+                        <input type="text" id="dob" value="15/06/1999" placeholder="DD/MM/YYYY">
+                    </div>
+                    <div class="form-group">
+                        <label for="issueOn">Issue On</label>
+                        <input type="text" id="issueOn" value="AUGUST 2025">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile</label>
+                    <input type="tel" id="mobile" value="+91 8732042589">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" value="Noob X Team, City X Team, 357753">
+                </div>
+                <div class="form-group">
+                    <label for="website">Website</label>
+                    <input type="text" id="website" value="https://www.indian.edu.in">
+                </div>
+
+                <div class="file-inputs">
+                    <div class="form-group">
+                        <label for="principalSignature">Principal Signature</label>
+                        <input type="file" id="principalSignature" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-900 dark:text-gray-100 dark:focus:ring-blue-400 dark:focus:border-blue-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-500 file:text-white hover:file:bg-blue-600"
+                onchange="validateFile(this, 800, ['jpg', 'jpeg', 'png', 'gif'])" accept=".jpg, .jpeg, .png, .gif" required>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="preview-section">
+            <h2>Live ID Card Preview</h2>
+            
+            <div class="card-wrapper">
+                <div class="id-card" id="idCardPreview">
+                    <div class="card-header">
+                        <p id="preview-issueOn">ISSUE ON: AUGUST 2025</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="college-info">
+                             <img id="preview-logo" src="https://via.placeholder.com/60.png?text=Logo" alt="College Logo">
+                             <h3 id="preview-collegeName">Guru Gobind Singh Indraprastha University</h3>
+                        </div>
+                        <div class="student-info">
+                            <div class="photo-container">
+                                <img id="preview-photo" src="https://via.placeholder.com/150.png?text=Photo" alt="Student Photo">
+                            </div>
+                            <div class="details-container">
+                                <p><strong>Student ID:</strong> <span id="preview-idNumber">IPU23CSE023</span></p>
+                                <p><strong>Mobile:</strong> <span id="preview-mobile">+91 8732042589</span></p>
+                                <p><strong>Class:</strong> <span id="preview-class">CSE</span></p>
+                                <p><strong>D.O.B:</strong> <span id="preview-dob">15/06/1999</span></p>
+                                <p><strong>Address:</strong> <span id="preview-address">Noob X Team, City X Team, 357753</span></p>
+                                
+                            </div>
+                        </div>
+                         <h2 id="preview-studentName">HERE NOOB</h2>
+                    </div>
+                    <div class="card-footer">
+                        <div class="signature-area">
+                            <img id="preview-signature" src="https://via.placeholder.com/150x50.png?text=Signature" alt="Principal Signature">
+                            <p>Principal's Signature</p>
+                        </div>
+                        <div class="preview-website-area">
+                            <p>🌐 <span id="preview-website">https://www.indian.edu.in</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="downloadBtn" class="download-button">Download Card</button>
+        </div>
+    </div>
+</body>
+</html>
